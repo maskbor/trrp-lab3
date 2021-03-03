@@ -1,0 +1,156 @@
+<wsdl:definitions 
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+    xmlns:tns="http://localhost/TRRP_lab3/" 
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://localhost/TRRP_lab3/">
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://localhost/TRRP_lab3/">
+            <xsd:element name="Waybill">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="date" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                        <xsd:element name="region" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                        <xsd:element name="adress_from" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                        <xsd:element name="adress_to" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                        <xsd:element name="vehicles" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                        <xsd:element name="reg_number" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                        <xsd:element name="fuel" type="xsd:int" minOccurs="1" maxOccurs="1" />
+                        <xsd:element name="odometer" type="xsd:int" minOccurs="1" maxOccurs="1" />
+                        <xsd:element name="responsible" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                        <xsd:element name="phone" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                        <xsd:element name="winter_highway" type="xsd:int" minOccurs="1" maxOccurs="1" />
+                        <xsd:element name="winter_city" type="xsd:int" minOccurs="1" maxOccurs="1" />
+                        <xsd:element name="summer_highway" type="xsd:int" minOccurs="1" maxOccurs="1" />
+                        <xsd:element name="summer_city" type="xsd:int" minOccurs="1" maxOccurs="1" />
+                        <xsd:element name="fuel_add" type="xsd:int" minOccurs="1" maxOccurs="1" />
+                        <xsd:element name="fuel_start" type="xsd:int" minOccurs="1" maxOccurs="1" />
+                        <xsd:element name="fuel_end" type="xsd:int" minOccurs="1" maxOccurs="1" />
+                        <xsd:element name="odometer_start" type="xsd:int" minOccurs="1" maxOccurs="1" />
+                        <xsd:element name="odometer_end" type="xsd:int" minOccurs="1" maxOccurs="1" />
+                        <xsd:element name="is_city" type="xsd:int" minOccurs="1" maxOccurs="1" />
+                        <xsd:element name="comment" type="xsd:string" minOccurs="1" maxOccurs="1" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="Waybills">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="tns:Waybill" minOccurs="0" maxOccurs="unbounded" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="GetWaybill">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="date" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="GetWaybillResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="tns:Waybill" minOccurs="0" maxOccurs="unbounded" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="AddWaybill">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="tns:Waybill" minOccurs="1" maxOccurs="1" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="AddWaybillResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:int" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="GetAllWaybills">
+                <xsd:complexType />
+            </xsd:element>
+            <xsd:element name="GetAllWaybillsResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="tns:Waybill" minOccurs="0" maxOccurs="unbounded" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="GetWaybillRequest">
+        <wsdl:part element="tns:GetWaybill" name="parameters" />
+    </wsdl:message>
+    <wsdl:message name="GetWaybillResponse">
+        <wsdl:part element="tns:GetWaybillResponse" name="parameters" />
+    </wsdl:message>
+    <wsdl:message name="AddWaybillRequest">
+        <wsdl:part name="parameters" element="tns:AddWaybill"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="AddWaybillResponse">
+        <wsdl:part name="parameters" element="tns:AddWaybillResponse"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetAllWaybillsRequest">
+        <wsdl:part name="parameters" element="tns:GetAllWaybills"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetAllWaybillsResponse">
+        <wsdl:part name="parameters" element="tns:GetAllWaybillsResponse"></wsdl:part>
+    </wsdl:message>
+
+    <wsdl:portType name="WaybillService">
+        <wsdl:operation name="GetWaybill">
+            <wsdl:input message="tns:GetWaybillRequest" />
+            <wsdl:output message="tns:GetWaybillResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="AddWaybill">
+            <wsdl:input message="tns:AddWaybillRequest"></wsdl:input>
+            <wsdl:output message="tns:AddWaybillResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAllWaybills">
+            <wsdl:input message="tns:GetAllWaybillsRequest"></wsdl:input>
+            <wsdl:output message="tns:GetAllWaybillsResponse"></wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="WaybillServiceSOAP" type="tns:WaybillService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="GetWaybill">
+            <soap:operation soapAction="http://localhost/TRRP_lab3/WaybillService/GetWaybill" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="AddWaybill">
+            <soap:operation soapAction="http://localhost/TRRP_lab3/server.php" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAllWaybills">
+            <soap:operation soapAction="http://localhost/TRRP_lab3/WaybillService/GetAllWaybills" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="WaybillService">
+        <wsdl:port binding="tns:WaybillServiceSOAP" name="WaybillServiceSOAP">
+            <soap:address location="http://localhost/TRRP_lab3/server.php" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
