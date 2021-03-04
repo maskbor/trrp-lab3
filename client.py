@@ -27,7 +27,7 @@ obj = waybill(
     is_city = 0,
     comment = '')
 
-#print(client.service.AddWaybill(Waybill=obj))
-#print(client.service.GetAllWaybills())
+print(client.service.AddWaybill(Waybill=obj))
+print(client.service.GetAllWaybills())
 print(client.service.GetWaybill(date='2020-06-19'))
 

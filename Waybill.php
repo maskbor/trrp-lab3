@@ -25,29 +25,9 @@ class Waybill
     public $is_city;
     public $comment;
 
-    /*public function __construct($date, $region, $adress_from, $adress_to, $vehicles, $reg_number, $fuel, $odometer, $responsible, $phone, $winter_highway, $winter_city, $summer_highway, $summer_city, $fuel_add, $fuel_start, $fuel_end, $odometer_start, $odometer_end, $is_city, $comment) {
-        $this->date = $date;
-        $this->region = $region;
-        $this->adress_from = $adress_from;
-        $this->adress_to = $adress_to;
-        $this->vehicles = $vehicles;
-        $this->reg_number = $reg_number;
-        $this->fuel = $fuel;
-        $this->odometer = $odometer;
-        $this->responsible = $responsible;
-        $this->phone = $phone;
-        $this->winter_highway = $winter_highway;
-        $this->winter_city = $winter_city;
-        $this->summer_highway = $summer_highway;
-        $this->summer_city = $summer_city;
-        $this->fuel_add = $fuel_add;
-        $this->fuel_start = $fuel_start;
-        $this->fuel_end = $fuel_end;
-        $this->odometer_start = $odometer_start;
-        $this->odometer_end = $odometer_end;
-        $this->is_city = $is_city;
-        $this->comment = $comment;
-    }*/
+    public function save($waybill){
+        
+    }
 
     public function getAll(){
         $db_sqlite = new SQLite3('lab2.db');
