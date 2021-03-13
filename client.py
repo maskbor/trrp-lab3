@@ -1,33 +1,46 @@
 import zeep
 
-wsdl = 'http://localhost/TRRP_lab3/server.php?WSDL'
-
-client = zeep.Client(wsdl=wsdl)
+client = zeep.Client(wsdl='http://localhost/TRRP_lab3/server.php?WSDL')
 waybill = client.get_element('ns0:Waybill')
-obj = waybill(
-    date = '2020-02-02 00:00:00', 
-    region = '', 
-    adress_from = '', 
-    adress_to = '', 
-    vehicles = '', 
-    reg_number = '', 
-    fuel = 10, 
-    odometer = 15000, 
-    responsible = '', 
-    phone = '', 
-    winter_highway = 10, 
-    winter_city = 11, 
-    summer_highway = 9, 
-    summer_city = 10, 
-    fuel_add = 0, 
-    fuel_start = 10, 
-    fuel_end= 4,
-    odometer_start = 14880, 
-    odometer_end = 15000, 
-    is_city = 0,
-    comment = '')
 
-print(client.service.AddWaybill(Waybill=obj))
-print(client.service.GetAllWaybills())
-print(client.service.GetWaybill(date='2020-06-19'))
+def create():
+    obj = waybill(
+        date = input('Дата: '), 
+        region = input('Регион: '), 
+        adress_from = input('Адрес от: '), 
+        adress_to = input('Адрес до: '), 
+        vehicles = input('ТС: '), 
+        reg_number = input('Рег. номер ТС: '), 
+        fuel = input('Топливо: '), 
+        odometer = input('Показания одометра: '), 
+        responsible = input('Ответственный: '), 
+        phone = input('Номер телефона: '), 
+        winter_highway = 10, 
+        winter_city = 11, 
+        summer_highway = 9, 
+        summer_city = 10, 
+        fuel_add = input('Заправлено: '), 
+        fuel_start = input('Показания топлива при выезде: '), 
+        fuel_end= input('Показания топлива при въезде: '),
+        odometer_start = input('Показания одометра при выезде: '), 
+        odometer_end = input('Показания одометра при въезде: '), 
+        is_city = 0,
+        comment = input('Коментарий: ')
+    )
+    print(client.service.AddWaybill(Waybill=obj))
 
+def find():
+    print(client.service.GetWaybill(date=input('Введите дату \n') ))
+
+def printAll():
+    print(client.service.GetAllWaybills())
+
+n = input('\n1-добавить\n2-Вывести все\n')
+
+while True:
+    if n == '1':
+        create()
+    if n == '2':
+        printAll()
+        
+    n = input('\n1-добавить\n2-Вывести все\n')

@@ -10,7 +10,7 @@ class WaybillService
     }
 
     public function AddWaybill($waybill){
-        return ['id' => 1];
+        return ['id' => $this->waybill->save($waybill->Waybill)];
     }
 
     public function GetAllWaybills(){
@@ -18,6 +18,6 @@ class WaybillService
     }
 
     public function GetWaybill($date){
-        return ['waybill' =>$this->waybill->get($date)];
+        return [$this->waybill->get($date)];
     }
 }

@@ -63,6 +63,7 @@
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
+            
             <xsd:element name="AddWaybillResponse">
                 <xsd:complexType>
                     <xsd:sequence>
@@ -70,6 +71,7 @@
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
+
             <xsd:element name="GetAllWaybills">
                 <xsd:complexType />
             </xsd:element>
